@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * Manages a collection of User objects, providing methods to add, remove, list, and search users.
  */
-public class Users {
+public class Users implements Serializable {
     private final List<User> list = new ArrayList<>();
 
     /**

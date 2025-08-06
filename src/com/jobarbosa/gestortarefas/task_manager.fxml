@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox spacing="8" xmlns="http://javafx.com/javafx/21.0.8" xmlns:fx="http://javafx.com/fxml" fx:controller="com.jobarbosa.gestortarefas.TaskManagerController">
+    <children>
+        <TableView fx:id="tableView">
+            <columns>
+                <TableColumn fx:id="idCol" text="ID" />
+                <TableColumn fx:id="descCol" text="Description" />
+                <TableColumn fx:id="completedCol" text="Completed" />
+            </columns>
+        </TableView>
+        <TextField fx:id="descField" promptText="Task description" />
+        <Button text="Add Task" fx:id="addButton" />
+        <Button text="Remove Selected" fx:id="removeButton" />
+    </children>
+</VBox>
+

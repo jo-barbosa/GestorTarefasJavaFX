@@ -1,9 +1,11 @@
 package com.jobarbosa.gestortarefas;
 
+import java.io.Serializable;
+
 /**
  * Represents a task with a unique id, description, and completion status.
  */
-public class Task {
+public class Task implements Serializable {
     /** Static variable to generate unique task IDs.
      * This is incremented each time a new Task is created.
      */
@@ -57,6 +59,23 @@ public class Task {
         this.description = description;
         this.completed = false;
         this.priority = priority;
+        this.dueDate = dueDate;
+        this.endDate = null;
+    }
+
+    /**
+     * Constructs a new Task with the specified id, description, and due date.
+     * Priority is set to MEDIUM by default. The task is initially not completed.
+     *
+     * @param id unique identifier for the task
+     * @param description task description
+     * @param dueDate due date for the task
+     */
+    public Task(int id, String description, java.time.LocalDate dueDate) {
+        this.id = id;
+        this.description = description;
+        this.completed = false;
+        this.priority = Priority.MEDIUM;
         this.dueDate = dueDate;
         this.endDate = null;
     }

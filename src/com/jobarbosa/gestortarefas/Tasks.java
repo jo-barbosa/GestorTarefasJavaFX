@@ -1,12 +1,13 @@
 package com.jobarbosa.gestortarefas;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Manages a collection of Task objects, providing methods to add, remove, and list tasks.
  */
-public class Tasks {
+public class Tasks implements Serializable {
     /** Internal list that stores the tasks. */
     private final List<Task> list = new ArrayList<>();
 
@@ -94,5 +95,32 @@ public class Tasks {
             }
         }
         return result;
+    }
+
+    /**
+     * Saves the task list to a file using Java serialization.
+     *
+     * @param filename the file to save to
+     * @throws IOException if an I/O error occurs
+     */
+    public void saveToFile(String filename) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+            out.writeObject(list);
+        }
+    }
+
+    /**
+     * Loads the task list from a file using Java serialization.
+     *
+     * @param filename the file to load from
+     * @throws IOException if an I/O error occurs
+     * @throws ClassNotFoundException if the class of a serialized object cannot be found
+     */
+    @SuppressWarnings("unchecked")
+    public void loadFromFile(String filename) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+            list.clear();
+            list.addAll((List<Task>) in.readObject());
+        }
     }
 }
