@@ -1,75 +1,107 @@
-# Gestor de Tarefas JavaFX 🗂️
+# JavaFX Task Manager
 
-Uma aplicação desktop simples desenvolvida em **Java** com **JavaFX** para gestão de tarefas pessoais.
-
----
-
-## ✨ Funcionalidades
-
-- ✅ Adicionar tarefas
-- 🗑️ Remover tarefas
-- ✅ Marcar tarefas como concluídas
-- 📅 Ver lista de tarefas ativas e concluídas
-- 💾 Dados armazenados em memória (por agora)
+A simple desktop app built with Java 21 and JavaFX to manage personal tasks, with user registration/login and file persistence.
 
 ---
 
-## 🛠️ Tecnologias usadas
+## Features
 
-- Java 21 ☕
-- JavaFX (UI gráfica)
+- Register and authenticate users
+- Add tasks with:
+  - Description
+  - Priority (LOW, MEDIUM, HIGH — default MEDIUM)
+  - Due date
+- List, remove, and mark tasks as completed (stores completion date)
+- Persistence using Java serialization to files under data/
+- Basic navigation: Login → Task Manager → Exit back to Login
+
+---
+
+## Tech stack
+
+- Java 21
+- JavaFX 21 (controls, fxml)
 - IntelliJ IDEA
-- Git + GitHub
+- Java serialization for persistence
 
 ---
 
-## 🚀 Como correr o projeto
+## How to run
 
-### 1. Requisitos:
-- Java JDK 21
-- JavaFX SDK 21 (adicionado como biblioteca externa)
+### Requirements
+- JDK 21
+- JavaFX SDK 21 installed locally (e.g., C:\\libs\\javafx-sdk-21.0.8)
 - IntelliJ IDEA
 
-### 2. Passos:
-
-1. Clona o repositório:
-   ```bash
-   git clone https://github.com/jo-barbosa/GestorTarefasJavaFX.git
-
-2. Abre no IntelliJ → Configura a library do JavaFX:
-    - Vai a `File → Project Structure → Libraries → +`
-    - Adiciona os `.jar` da pasta `lib/` do JavaFX SDK
-
-3. Configura o Run/VM Options:
-   --module-path /caminho/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml
-
-
-4. Corre a aplicação 🚀
+### Setup in IntelliJ
+1. Add JavaFX libraries:
+   - File → Project Structure → Libraries → + → Java
+   - Select the lib/ folder inside your JavaFX SDK (e.g., C:\\libs\\javafx-sdk-21.0.8\\lib)
+2. Configure Run/Debug configuration (VM options):
+   - Windows example:
+     --module-path "C:\\libs\\javafx-sdk-21.0.8\\lib" --add-modules javafx.controls,javafx.fxml
+   - macOS/Linux example:
+     --module-path /path/to/javafx-sdk-21.0.8/lib --add-modules javafx.controls,javafx.fxml
+3. Run MainApp
 
 ---
 
-## 📁 Estrutura do projeto
+## Project structure
 
 ```
 src/
-└── com.jobarbosa.gestortarefas/
-├── MainApp.java
-├── Tarefa.java
-└── GestorTarefas.java
+└── com/jobarbosa/gestortarefas/
+    ├── MainApp.java
+    ├── LoginController.java
+    ├── RegistrationController.java
+    ├── TaskManagerController.java
+    ├── TasksManagementController.java
+    ├── UserManagementController.java
+    ├── Task.java
+    ├── Tasks.java
+    ├── User.java
+    ├── Users.java
+    ├── login.fxml
+    ├── registration.fxml
+    └── task_manager.fxml
+
+data/
+├── users.dat
+└── tasks.dat
 ```
----
 
-## 🔧 Próximas melhorias
-
-- [ ] Armazenamento em ficheiro ou base de dados
-- [ ] Interface com categorias
-- [ ] Filtro de tarefas por data
-- [ ] Exportação para CSV
+Notes:
+- UI is currently created in Java code; FXML files are present and can be wired later.
+- Data files are created automatically if they don’t exist.
 
 ---
 
-## 👨‍💻 Autor
+## Persistence
 
-Desenvolvido por Jorge Barbosa – estudante de Engenharia Informática no ISEP 💻  
-<!-- LinkedIn: [https://www.linkedin.com/in/teu-link/](https://www.linkedin.com/in/teu-link/) -->
+- Users and tasks are serialized to:
+  - data/users.dat
+  - data/tasks.dat
+- Data is loaded on app startup and saved on changes (e.g., add/remove/complete).
 
+---
+
+## Troubleshooting
+
+- Error: Cannot resolve symbol 'javafx' / package javafx.* does not exist
+  - Ensure JavaFX SDK is added as a Library in IntelliJ.
+  - Ensure VM options include the correct --module-path and --add-modules values (see above).
+  - Confirm the JavaFX SDK path matches your installation.
+
+---
+
+## Next steps
+
+- Wire FXML views to controllers
+- Add task filters (by priority, due date, completed)
+- Improve validation and error feedback
+
+---
+
+## Author
+
+Developed by Jorge Barbosa.
